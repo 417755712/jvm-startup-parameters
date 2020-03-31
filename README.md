@@ -1,12 +1,19 @@
 - ### 前言：
+
 > 本文内容是基于 JDK 8
+
 - ### 背景描述:
+
 --- 
+
 &nbsp;&nbsp;因发现公司的JVM参数配置的不合理，各项目之间JVM参数配置不统一，并且CMS GC触发时间，是交由JVM动态调控的，造成遇到GC和JVM相关问题的时候，排查较为困难，于是基于JDK8整理出一套通用的JVM参数配置。
 
 ---
+
 - ### 注意事项
+
 ---
+
 1. 新生代垃圾回收器是采用ParNew（标记复制算法）
 
 2. 老年代的垃圾回收器是采用CMS（标记清除算法）
@@ -14,7 +21,11 @@
 3. 备用老年代垃圾回收器（Concurrent Mode Failure)采用Serial Old（标记整理算法）
 
 ---
+
 - ### JVM参数
+
+``` 
+
 设置初始内存和最大内存为5120m(具体大小可根据项目自行调节)，设置为统一，避免扩容造成的性能损失
 
 -Xms5120m 
@@ -101,4 +112,5 @@ CMS垃圾回收时卸载无用的class类
 -XX:+PrintSafepointStatistics
 
 -XX:PrintSafepointStatisticsCount=1
+```
 
